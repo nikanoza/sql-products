@@ -16,6 +16,7 @@ async function init() {
   function serverStart() {
     app.use(bodyParser.json());
     app.use(cors());
+
     app.get("/api/products", async (_, response) => {
       try {
         const resultQuery = await pool.query("SELECT * FROM products");
@@ -25,6 +26,7 @@ async function init() {
         return response.status(401).json(error);
       }
     });
+
     app.post("/api/products", async (req, res) => {
       const { title, price } = req.body;
       try {
