@@ -14,3 +14,5 @@ export const createTable = async () => {
     "CREATE TABLE IF NOT EXISTS products(id SERIAL PRiMARY KEY, title TEXT, price INT)"
   );
 };
+
+export default pool;
