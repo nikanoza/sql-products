@@ -34,3 +34,17 @@ export const deleteProduct = async (req, res) => {
     return res.status(401).json(error);
   }
 };
+
+export const updateProduct = async (req, res) => {
+  const id = +req.params.id;
+  const { title, price } = req.body;
+  try {
+    await pool.query(
+      "UPDATE FROM products SET title = $2, price = $3 WHERE id = $1",
+      [id, title, price]
+    );
+    return res.status(201).json({ message: "product deleted!" });
+  } catch (error) {
+    return res.status(401).json(error);
+  }
+};
